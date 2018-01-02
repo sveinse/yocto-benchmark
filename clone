@@ -1,0 +1,37 @@
+#!/bin/sh -x
+
+distro=pyro
+base="$(realpath "$PWD")"
+
+if [ ! -d poky ]; then
+    git clone git://git.yoctoproject.org/poky -b $distro
+    #(cd poky; git checkout abec40e5ebc6f1b804cf698e365737224a57c41d)
+    (cd poky; git checkout 022df4653576c72752156bef8fda0e1aa46733d2)
+fi
+
+build=
+if [ ! -d build ]; then
+    build=1
+fi
+
+export OEROOT="$(realpath "poky")"
+. poky/oe-init-build-env
+
+if [ "$build" ]; then
+    cp conf/local.conf conf/local.conf.orig
+fi
+
+if [ ! -d download ]; then
+
+    cp conf/local.conf.orig conf/local.conf
+    cat >>conf/local.conf <<EOF
+# Extra
+DISTRO_FEATURES += " pam x11 opengl"
+BB_GENERATE_MIRROR_TARBALLS = "1"
+DL_DIR = "$base/download"
+EOF
+
+    time bitbake -c fetchall core-image-minimal
+fi
+
+rm -rf bitbake* cache sstate-* tmp* downloads*

@@ -1,0 +1,4 @@
+#!/bin/sh -x
+
+(cd build; rm -rf bitbake* cache sstate-* tmp* downloads*)
+

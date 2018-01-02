@@ -1,0 +1,20 @@
+#!/bin/sh -x
+
+base="$(realpath "$PWD")"
+
+export OEROOT="$(realpath "poky")"
+. poky/oe-init-build-env
+
+cp conf/local.conf.orig conf/local.conf
+cat >>conf/local.conf <<EOF
+# Extra
+DISTRO_FEATURES += " pam x11 opengl"
+SOURCE_MIRROR_URL = "file://$base/download"
+INHERIT += "own-mirrors"
+PACKAGE_CLASSES = "package_ipk"
+INHERIT += "rm_work"
+# BB_NO_NETWORK = "1"
+# BB_FETCH_PREMIRRORONLY = "1"
+EOF
+
+time -o ../time-compile.$$ bitbake -k core-image-minimal
