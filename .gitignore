@@ -1,0 +1,5 @@
+build/
+download/
+poky/
+*~
+results.txt
