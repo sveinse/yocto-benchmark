@@ -86,6 +86,9 @@ Here are some results from my own testing:
   # VirtualBox Ubuntu guest on Ubuntu host. 4096Mb, 4 CPU
   10724.01user 1482.69system 1:03:15elapsed 321%CPU  (2018-01-03)
   10888.51user 1500.76system 1:04:04elapsed 322%CPU  (2018-01-03)
+
+  # VMWare Player on Ubuntu host. 4096Mb, 8 CPU
+  19583.42user 2952.69system 1:00:04elapsed 625%CPU  (2018-01-03)
   ```
 ---
 
