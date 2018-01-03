@@ -4,3 +4,4 @@ poky/
 *~
 results.txt
 .vscode
+time-compile.*
