@@ -21,4 +21,16 @@ INHERIT += "rm_work"
 # PARALLEL_MAKE ?= "-j "
 EOF
 
-time -o ../time-compile.$$ bitbake -k core-image-minimal
+f=../time-compile.$$
+time -o $f bitbake -k core-image-minimal
+
+# Some simple system infomation
+echo >> $f
+cat /proc/cpuinfo | grep -m 1 "model name" >> $f
+echo -n "Number of CPUs  : " >> $f
+cat /proc/cpuinfo | grep "model name" | wc -l >> $f
+echo "Memory          : " >> $f
+free >> $f
+
+echo "RESULTS:"
+cat $f

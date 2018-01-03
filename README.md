@@ -33,7 +33,7 @@ equally everywhere.
     ./compile
  ```
 
-It can be worth running the test (step 5) multiple times to see if system caching
+It can be worth running the test (step 4) multiple times to see if system caching
 makes any difference. To rerun, please run `./clean` and then rerun the
 compilation with `./compile`.
 
