@@ -3,3 +3,4 @@ download/
 poky/
 *~
 results.txt
+.vscode
