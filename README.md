@@ -12,7 +12,8 @@ equally everywhere.
     cd yocto-benchmark
  ```
 
- 2. Install the necessary host-tools. Do do this on Ubuntu, execute
+ 2. If the machine haven't been used for Yocto building before, the necessary
+    host-tools for Yocto must be installed. To do this on Ubuntu, execute
 
  ```
     sudo ./host-install
@@ -26,8 +27,8 @@ equally everywhere.
  ```
 
  4. Run the timed compilation. The results will be logged in `time-compile.*`.
-    It will consume around 8 Gb disk when `RM_WORK="1"`, or around 18 Gb if
-    `RM_WORK` is not enabled (see `compile` for settings).
+    It will consume around 8 Gb disk when `RM_WORK="1"` (default), and around
+    18 Gb if `RM_WORK` is disabled (see the `compile` file for settings).
 
  ```
     ./compile
@@ -89,7 +90,24 @@ Here are some results from my own testing:
 
   # VMWare Player on Ubuntu host. 4096Mb, 8 CPU
   19583.42user 2952.69system 1:00:04elapsed 625%CPU  (2018-01-03)
+
+  # VirtalBox on Windows 8 host. 4096Mb, 4 CPU
+   9815.62user 953.91system 56:54.96elapsed 315%CPU  (2018-01-03)
+  10007.63user 982.05system 58:07.10elapsed 315%CPU  (2018-01-03)
+
+  # VirtalBox on Windows 8 host. 4096Mb, 4 CPU, PHY disk
+  9552.24user 1038.75system 53:11.13elapsed 331%CPU  (2018-01-03)
+  9604.82user 1025.48system 53:24.65elapsed 331%CPU  (2018-01-03)
   ```
+
+### Workstation
+
+**System**: Workstation. 2x Xeon E5-2670 v2 @ 2.5GHz (2x 10cores x2 HT). 64 GB Memory. Linux host.
+
+  ```
+  15854.25user 1476.46system 19:18.75elapsed 1495%CPU  (2018-01-03)
+  ```
+
 ---
 
 2018-01-02 Svein Seldal <sveinse@seldal.com>
