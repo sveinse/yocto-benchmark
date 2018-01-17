@@ -5,8 +5,14 @@ base="$(realpath "$PWD")"
 
 if [ ! -d poky ]; then
     git clone git://git.yoctoproject.org/poky -b $distro
-    #(cd poky; git checkout abec40e5ebc6f1b804cf698e365737224a57c41d)
-    (cd poky; git checkout 022df4653576c72752156bef8fda0e1aa46733d2)
+
+    if [ "$distro" = "pyro" ]; then
+        (cd poky; git checkout 022df4653576c72752156bef8fda0e1aa46733d2)
+
+    elif [ "$distro" = "rocko" ]; then
+        (cd poky; git checkout 165b337dfe00fd460c62d2e15a8a2c5613bb326c)
+    
+    fi
 fi
 
 build=
@@ -26,9 +32,12 @@ if [ ! -d download ]; then
     cp conf/local.conf.orig conf/local.conf
     cat >>conf/local.conf <<EOF
 # Extra
+MACHINE = "qemux86"
+DL_DIR = "$base/download"
+# DL_DIR = "/srv/yocto/downloads"
+# SSTATE_DIR = "/srv/yocto/sstate"
 DISTRO_FEATURES += " pam x11 opengl"
 BB_GENERATE_MIRROR_TARBALLS = "1"
-DL_DIR = "$base/download"
 EOF
 
     time bitbake -c fetchall core-image-minimal

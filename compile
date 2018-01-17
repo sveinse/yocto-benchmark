@@ -8,6 +8,10 @@ export OEROOT="$(realpath "poky")"
 cp conf/local.conf.orig conf/local.conf
 cat >>conf/local.conf <<EOF
 # Extra
+MACHINE = "qemux86"
+DL_DIR = "$base/download"
+# DL_DIR = "/srv/yocto/downloads"
+# SSTATE_DIR = "/srv/yocto/sstate"
 DISTRO_FEATURES += " pam x11 opengl"
 SOURCE_MIRROR_URL = "file://$base/download"
 INHERIT += "own-mirrors"
