@@ -48,7 +48,7 @@ Here are some results from my own testing:
 
 ### DL380 Virtual
 
-**System:** HP DL380, 16 CPU E5-2637 v2 @3.5GHz, 128 GB RAM. Running MS Server 2012 with HyperV. Guest running Ubuntu, 80GB RAM, 16 CPU. Dedicated PHY access to SSD storage device.
+**System:** HP DL380, E5-2637 v2 @3.5GHz (2x4 cores, 16 threads), 128 GB RAM. Running MS Server 2012 with HyperV. Guest running Ubuntu, 80GB RAM, 16 CPU. Dedicated PHY access to SSD storage device.
 
   ```
   # Standard compilation
@@ -70,7 +70,7 @@ Here are some results from my own testing:
 
 ### Lenovo W530
 
-**System**: Lenovo W530 laptop. i7-3820QM CPU @2.7 GHz (4 cores x2 HT), 8 GB memory. Intel 520 SSD.
+**System**: Lenovo W530 laptop. i7-3820QM CPU @2.7 GHz (4 cores, 8 threads), 8 GB memory. Intel 520 SSD.
 
   ```
   # Standard compilation
@@ -102,20 +102,28 @@ Here are some results from my own testing:
 
 ### Workstation
 
-**System**: Workstation. 2x Xeon E5-2670 v2 @ 2.5GHz (2x 10cores x2 HT). 64 GB Memory. Linux host.
+**System**: Workstation. 2x Xeon E5-2670 v2 @ 2.5GHz (2x10cores, 40 threads). 64 GB Memory. Linux host.
 
   ```
   15854.25user 1476.46system 19:18.75elapsed 1495%CPU  (2018-01-03)
   ```
 
-### Lenovo P51 
+### Lenovo P51
 
-**System**: Lenovo P51 laptop. i7-7820HQ CPU @2.9 GHz (4 cores x2 HT), 32 GB memory. 2x Intel nvme SSD.
+**System**: Lenovo P51 laptop. i7-7820HQ CPU @2.9 GHz (4 cores, 8 threads), 32 GB memory. 2x Intel nvme SSD.
 
   ```
-  13216.55user 1355.77system 33:59.39elapsed 714%CPU  (2018-11-17)
+  13216.55user 1355.77system 33:59.39elapsed 714%CPU  (2018-01-17)
   ```
 
+
+### ASUS ROG G750JH
+
+**System**: ASUS ROG G750JH. i7-4700HQ CPU @2.40GHz (4 cores, 8 threads), 32 GB memory, Samsung 850 PRO SSD
+
+  ```
+  15938.39user 1695.40system 41:49.66elapsed 702%CPU  (2018-02-08)
+  ```
 ---
 
-2018-01-02 Svein Seldal <sveinse@seldal.com>
+2018-02-08 Svein Seldal <sveinse@seldal.com>
