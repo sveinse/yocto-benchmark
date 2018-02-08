@@ -108,6 +108,14 @@ Here are some results from my own testing:
   15854.25user 1476.46system 19:18.75elapsed 1495%CPU  (2018-01-03)
   ```
 
+### Lenovo P51 
+
+**System**: Lenovo P51 laptop. i7-7820HQ CPU @2.9 GHz (4 cores x2 HT), 32 GB memory. 2x Intel nvme SSD.
+
+  ```
+  13216.55user 1355.77system 33:59.39elapsed 714%CPU  (2018-11-17)
+  ```
+
 ---
 
 2018-01-02 Svein Seldal <sveinse@seldal.com>
