@@ -3,6 +3,7 @@
 distro=zeus
 base="$(realpath "$PWD")"
 
+set +x
 if [ "$distro" = "zeus" ]; then
     cd poky
     . ./oe-init-build-env $PWD/../build
@@ -10,6 +11,7 @@ else
     export OEROOT="$(realpath "poky")"
     . poky/oe-init-build-env
 fi
+set -x
 pwd
 
 cp conf/local.conf.orig conf/local.conf

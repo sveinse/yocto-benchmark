@@ -23,6 +23,7 @@ if [ ! -d build ]; then
     build=1
 fi
 
+set +x
 if [ "$distro" = "zeus" ]; then
     cd poky
     . ./oe-init-build-env $PWD/../build
@@ -30,6 +31,7 @@ else
     export OEROOT="$(realpath "poky")"
     . poky/oe-init-build-env
 fi
+set -x
 pwd
 
 if [ "$build" ]; then
