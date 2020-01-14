@@ -1,8 +1,9 @@
 build/
-downloads/
+download/
 sstate-cache/
 poky/
 *~
 results.txt
 .vscode
 time-compile.*
+build.log

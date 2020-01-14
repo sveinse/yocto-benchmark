@@ -28,6 +28,7 @@ EOF
 f=../time-compile.$$
 echo "$(date -R): Compile time stored in $f" >>../build.log
 time -o $f bitbake -k core-image-minimal
+cat $f >>../build.log
 
 # Some simple system infomation
 echo >> $f

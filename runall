@@ -1,0 +1,38 @@
+#!/bin/sh
+
+( set -ex
+
+printf "\n\nStarted benchmark run $(date -R)\n" >>build.log
+
+# Clean the cache
+./distclean
+
+# Clone and download the necessary sources. Will download 5.3 Gb from the
+./clone
+
+echo "Download size: $(du -hs download)" >>build.log
+echo "SState cache: $(du -hs build/sstate-cache)" >>build.log
+echo "Build tmp: $(du -hs build/tmp)" >>build.log
+
+# Run the timed compilation.
+# It will consume around 8 Gb disk when `RM_WORK="1"` (default), and around
+# 18 Gb if `RM_WORK` is disabled (see the `compile` file for settings).
+./compile
+
+echo "Download size: $(du -hs download)" >>build.log
+echo "SState cache: $(du -hs build/sstate-cache)" >>build.log
+echo "Build tmp: $(du -hs build/tmp)" >>build.log
+
+# Second run
+./clean
+./compile
+
+echo "Download size: $(du -hs download)" >>build.log
+echo "SState cache: $(du -hs build/sstate-cache)" >>build.log
+echo "Build tmp: $(du -hs build/tmp)" >>build.log
+
+# Remove everything
+./distclean
+
+)
+echo "Completed benchmark run $(date -R)" >>build.log

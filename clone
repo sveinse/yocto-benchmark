@@ -42,7 +42,8 @@ EOF
 
     f=../time-compile.$$
     echo "$(date -R): Download time stored in $f" >>../build.log
-    time bitbake -c fetchall -k core-image-minimal
+    time -o $f bitbake -c fetchall -k core-image-minimal
+    cat $f >>../build.log
 fi
 
 rm -rf bitbake* cache sstate-* tmp* downloads*
