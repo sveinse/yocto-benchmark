@@ -27,7 +27,7 @@ equally everywhere.
  ```
 
  4. Run the timed compilation. The results will be logged in `time-compile.*`.
-    It will consume around 8 Gb disk when `RM_WORK="1"` (default), and around
+    It will consume around 8 Gb disk when `RM_WORK="1"`, and around
     18 Gb if `RM_WORK` is disabled (see the `compile` file for settings).
 
  ```
