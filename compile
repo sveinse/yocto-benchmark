@@ -1,9 +1,16 @@
-#!/bin/sh -x
+#!/bin/bash -x
 
+distro=zeus
 base="$(realpath "$PWD")"
 
-export OEROOT="$(realpath "poky")"
-. poky/oe-init-build-env
+if [ "$distro" = "zeus" ]; then
+    cd poky
+    . ./oe-init-build-env $PWD/../build
+else
+    export OEROOT="$(realpath "poky")"
+    . poky/oe-init-build-env
+fi
+pwd
 
 cp conf/local.conf.orig conf/local.conf
 cat >>conf/local.conf <<EOF
@@ -27,8 +34,7 @@ EOF
 
 f=../time-compile.$$
 echo "$(date -R): Compile time stored in $f" >>../build.log
-time -o $f bitbake -k core-image-minimal
-cat $f >>../build.log
+/usr/bin/time -o $f bitbake -k core-image-minimal
 
 # Some simple system infomation
 echo >> $f
@@ -40,3 +46,4 @@ free >> $f
 
 echo "RESULTS:"
 cat $f
+cat $f >>../build.log

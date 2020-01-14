@@ -1,6 +1,6 @@
-#!/bin/sh -x
+#!/bin/bash -x
 
-distro=pyro
+distro=zeus
 base="$(realpath "$PWD")"
 
 if [ ! -d poky ]; then
@@ -11,7 +11,10 @@ if [ ! -d poky ]; then
 
     elif [ "$distro" = "rocko" ]; then
         (cd poky; git checkout 165b337dfe00fd460c62d2e15a8a2c5613bb326c)
-    
+
+    elif [ "$distro" = "zeus" ]; then
+        (cd poky; git checkout cf92a2d567260b91a259652bad0ecd790750f710 )
+
     fi
 fi
 
@@ -20,8 +23,14 @@ if [ ! -d build ]; then
     build=1
 fi
 
-export OEROOT="$(realpath "poky")"
-. poky/oe-init-build-env
+if [ "$distro" = "zeus" ]; then
+    cd poky
+    . ./oe-init-build-env $PWD/../build
+else
+    export OEROOT="$(realpath "poky")"
+    . poky/oe-init-build-env
+fi
+pwd
 
 if [ "$build" ]; then
     cp conf/local.conf conf/local.conf.orig
@@ -42,7 +51,11 @@ EOF
 
     f=../time-compile.$$
     echo "$(date -R): Download time stored in $f" >>../build.log
-    time -o $f bitbake -c fetchall -k core-image-minimal
+    if [ "$distro" = "zeus" ]; then
+        /usr/bin/time -o $f bitbake --runall=fetch core-image-minimal
+    else
+        /usr/bin/time -o $f bitbake -c fetchall core-image-minimal
+    fi
     cat $f >>../build.log
 fi
 
